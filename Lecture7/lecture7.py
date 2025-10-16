@@ -25,23 +25,26 @@ def div_by(n, d):
     """ n and d are ints > 0
         Returns True if d divides n evenly and False otherwise 
     """
-    # your code here
+    if n % d == 0:
+        return True
+    else:
+        return False
 
 
 # For example: 
-# print(div_by(10,3))     # print False
-# print(div_by(195,13))   # returns True
+#print(div_by(10,3))     # print False
+#print(div_by(195,13))   # returns True
 
 ##############################################
 
 # # Using the is_even function later on in the code
 # print("Numbers between 1 and 10: even or odd")
 
-# for i in range(1,10):
-#     if is_even(i):
-#         print(i, "even")
-#     else:
-#         print(i, "odd")
+#for i in range(1,10):
+    if is_even(i):
+        print(i, "even")
+    else:
+        print(i, "odd")
 
 
 
@@ -52,7 +55,7 @@ def div_by(n, d):
 def sum_odd(a, b):
     sum_of_odds = 0
     for i in range(a, b+1):
-        if i%2 == 0:
+        if i%2 == 1:
             sum_of_odds += i
             print(i, sum_of_odds)
     return sum_of_odds
@@ -81,7 +84,14 @@ def is_palindrome(s):
     """ s is a string
     Returns True if s is a palindrome and False otherwise
     """
-    # your code here
+    b = s[::-1]
+    if s == b:
+        return True
+    else:
+        return False
+
+# print(is_palindrome("abba"))
+# print(is_palindrome("abav"))
 
 ################################################
 
@@ -94,12 +104,17 @@ def keep_consonants(word):
         Returns a string containing only the consonants 
         of word in the order they appear
     """
-    # your code here
+    # vowels in english
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    for i in word:
+        if i in vowels:
+            word = word.replace(i, "")
+    return word
 
 # For example
-# print(keep_consonants("abcd"))  # prints bcd
+#print(keep_consonants("abcd"))  # prints bcd
 # print(keep_consonants("aaa"))  # prints an empty string
-# print(keep_consonants("babas"))  # prints bbs
+#print(keep_consonants("babas"))  # prints bbs
 
 
 
@@ -110,12 +125,24 @@ def first_to_last_diff(s, c):
         occurs and the index where c last occurs. If c does not 
         occur in s, returns -1. 
     """
-    # your code here
+    # check if c occurs in s
+    if c not in s:
+        return -1
+    count = 0
+    position = []
+    for i in s:
+        if i == c:
+            position.append(count)
+        count += 1
+    return position[-1] - position[0] 
+
+
+
 
 # For example
 # print(first_to_last_diff('aaaa', 'a'))  # prints 3
 # print(first_to_last_diff('abcabcabc', 'b'))  # prints 6
-# print(first_to_last_diff('abcabcabc', 'b'))  # prints -1
+# print(first_to_last_diff('abcabcabc', 'z'))  # prints -1
 
 
 ################################################

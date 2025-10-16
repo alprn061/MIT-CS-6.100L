@@ -29,7 +29,8 @@ def remove_all(L, e):
     Mutates L to remove all elements in L that are equal to e
     Returns None.
     """
-    # your code here
+    while e in L:
+        L.remove(e)
     
 
 # Lin = [1,2,2,2]
@@ -246,31 +247,24 @@ def remove_dups(L1, L2):
 ############################################
 ################### AT HOME ######################
 ############################################
-def repeat(L, n):
-    """ L is a list of ints
-        n is a positive int
-    Mutates L to contain whatever elements L has right now repeated n times. """
-    # your code here 
-    
-# Lin = [1,2,3]
-# repeat(Lin, 3)
-# print(Lin)    # prints [1, 2, 3, 1, 2, 3, 1, 2, 3]
 
-# Think about why the following solution does not work!
 def repeat(L, n):
     """ L is a list of ints
         n is a positive int
     Mutates L to contain whatever elements L has right now repeated n times. """
     # your code here 
-    Lnew = []
-    for i in range(n):
-        for e in L:
-            Lnew.append(e)
-    Lin = Lnew  # hint, even thought we reuse the name Lin here, we make it point to a NEW object!
+    Lsub = L[:]
+    k = 0
+    m = (len(L)-1) * n
+    while (k < m):
+        for i in Lsub:
+            L.append(i)
+            k += 1
+    return L
     
-# Lin = [1,2,3]
-# repeat(Lin, 3)
-# print(Lin)   # prints [1, 2, 3] which is wrong!
+Lin = [1,2,3]
+repeat(Lin, 3)
+print(Lin)   # prints [1, 2, 3, 1, 2, 3, 1, 2, 3] 
 
 
 #######################################

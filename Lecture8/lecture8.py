@@ -88,15 +88,7 @@ def bisection_root(x):
 # print(bisection_root(123))
 
 
-###################### YOU TRY IT ######################
-def count_nums_with_sqrt_close_to(n, epsilon):
-    """ n is an int > 2
-        epsilon is a positive number < 1
-    Returns how many integers have a square root within epsilon of n """
-    # your code here
 
-
-#print(count_nums_with_sqrt_close_to(10, 0.1))
 
 #############################################################
 
@@ -137,9 +129,9 @@ def f(y):
 def h(y):
     x += 1 #leads to an error without line `global x` inside h
 
-# # x = 5
-# # h(x)
-# # print(x)
+#x = 5
+#h(x)
+#print(x)
 
 
 #############
@@ -188,14 +180,18 @@ def apply(criteria,n):
     Returns how many ints from 0 to n (inclusive) match the criteria 
     (i.e. return True when criteria is applied to them)
     """ 
-    # your code here
+    count = 0
+    for i in range (n+1):
+        if criteria(i) is True:
+            count +=1
+    return count
 
 
 def is_even(x):
     return x%2==0
 
 how_many = apply(is_even,10)
-# print(how_many)
+#print(how_many)
 
 
 
@@ -211,10 +207,15 @@ def max_of_both(n, f1, f2):
     Applies f1 and f2 on all numbers between 0 and n (inclusive). 
     Returns the maximum value of all these results.
     """
-    # your code here
+    big = 0
+    for i in range(n+1):
+        if max(f1(i), f2(i)) > big:
+            big = max(f1(i), f2(i))
+    return big
 
-# print(max_of_both(2, lambda x:x-1, lambda x:x+1))  # prints 3
-# print(max_of_both(10, lambda x:x*2, lambda x:x/2))  # prints 20
+    
+#print(max_of_both(2, lambda x:x-1, lambda x:x+1))  # prints 3
+#print(max_of_both(10, lambda x:x*2, lambda x:x/2))  # prints 20
 
 
 ################################
@@ -270,12 +271,15 @@ def is_palindrome(s):
     Returns True if s is a palnidrome and False otherwise. 
     A palindrome is a string that contains the same 
     sequence of characters forward and backward """
-    # your code here
+    if s == s[::-1]:
+        return True
+    else:
+        return False
 
 # For example:
-# print(is_palindrome("222"))   # prints True
-# print(is_palindrome("2222"))   # prints True
-# print(is_palindrome("abc"))   # prints False
+#print(is_palindrome("222"))   # prints True
+#print(is_palindrome("2222"))   # prints True
+#print(is_palindrome("abc"))   # prints False
 
 
 def f_yields_palindrome(n, f):
@@ -283,7 +287,11 @@ def f_yields_palindrome(n, f):
         f is a function that takes in an int and returns an int
     Returns True if applying f on n returns a number that is a
     palindrome and False otherwise.  """
-    # your code here
+    s = str(f(n))
+    if s == s[::-1]:
+        return True
+    else:
+        return False
 
 
 # For example:
@@ -296,10 +304,10 @@ def g(x):
 def h(x):
     return x//2
 
-# print(f_yields_palindrome(2, f))   # prints True
-# print(f_yields_palindrome(76, f))   # prints True
-# print(f_yields_palindrome(11, g))   # prints True
-# print(f_yields_palindrome(123, h))   # prints False
+#print(f_yields_palindrome(2, f))   # prints True
+#print(f_yields_palindrome(76, f))   # prints True
+#print(f_yields_palindrome(11, g))   # prints True
+#print(f_yields_palindrome(123, h))   # prints False
     
 ###################################
 ##################################

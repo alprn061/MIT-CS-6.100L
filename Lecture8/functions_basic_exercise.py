@@ -41,7 +41,7 @@ Constraints:
 s consists of lowercase English letters.
 '''
 
-
+# this example is taken from community, not solved by me
 def getLucky(s: str, k: int) -> int:
     number = ''
     for x in s:
@@ -55,4 +55,72 @@ def getLucky(s: str, k: int) -> int:
         number = str(temp)  # Convert the sum back to a string
         k -= 1
     return int(number)  # Return the final result as an integer
-print(getLucky("zbax",2))
+#print(getLucky("zbax",2))
+
+
+
+'''202. Happy Number
+Easy
+Topics
+premium lock icon
+Companies
+Write an algorithm to determine if a number n is happy.
+
+A happy number is a number defined by the following process:
+
+Starting with any positive integer, replace the number by the sum of the squares of its digits.
+Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+Those numbers for which this process ends in 1 are happy.
+Return true if n is a happy number, and false if not.
+
+ 
+
+Example 1:
+Input: n = 19
+Output: true
+Explanation:
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+
+Example 2:
+Input: n = 2
+Output: false
+ 
+
+Constraints:
+1 <= n <= 231 - 1
+'''
+
+
+
+
+
+
+
+'''118. Pascal's Triangle
+Easy
+Topics
+premium lock icon
+Companies
+Given an integer numRows, return the first numRows of Pascal's triangle.
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+Example 1:
+Input: numRows = 5
+Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+Example 2:
+Input: numRows = 1
+Output: [[1]]
+ 
+
+Constraints:
+1 <= numRows <= 30
+'''
+
+def generate(numRows: int) -> list[list[int]]:
+    tot = [[1],[1,1]]
+    for i in range(numRows+1):
+        tot[i]

@@ -18,8 +18,8 @@ def f(expr, old_list, test = lambda x: True):
 
 ########## YOU TRY IT #############
 ## What is returned by this list comprehension expression?
-# L = [x**2 for x in [2, 'a', 3, 4.0] if type(x) == int] 
-# print(L)
+#L = [x**2 for x in [2, 'a', 3, 4.0] if type(x) == int] 
+#print(L)
 
 ###################################
 

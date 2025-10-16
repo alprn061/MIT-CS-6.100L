@@ -29,6 +29,10 @@ def make_ordered_list(n):
     from 0 to n (inclusive)
     """
     # your code here
+    ls = []
+    for i in range(n+1):
+        ls.append(i)
+    return ls
 
     
 #print(make_ordered_list(6))  # prints [0, 1, 2, 3, 4, 5, 6]
@@ -44,12 +48,17 @@ def remove_elem(L, e):
     but without any elements equal to e. 
     """
     # your code here
+    new = []
+    for i in L:
+        if i != e:
+            new.append(i)
+    return new
 
   
-# L = [1,2,2,2]
-# print(remove_elem(L, 2))    # prints [1]
-# L = [1,2,2,2]
-# print(remove_elem(L, 1))    # prints [2,2,2]
+#L = [1,2,2,2]
+#print(remove_elem(L, 2))    # prints [1]
+#L = [1,2,2,2]
+#print(remove_elem(L, 1))    # prints [2,2,2]
 # L = [1,2,2,2]
 # print(remove_elem(L, 0))    # prints [1,2,2,2]
 
@@ -86,13 +95,15 @@ def count_words(sen):
     Returns how many words are in sen (i.e. a word is a 
     a sequence of characters between spaces. """
     # your code here
+    s1 = sen.split(" ")
+    return len(s1)
+        
 
+#s = "Hello it's me"
+#print(count_words(s))   # prints 3
 
-# s = "Hello it's me"
-# print(count_words(s))   # prints 3
-
-# s = "I just took a DNA test turns out I'm 100% splitting strings"
-# print(count_words(s))   # prints 12
+#s = "I just took a DNA test turns out I'm 100% splitting strings"
+#print(count_words(s))   # prints 12
 
 ###########################################
 
@@ -118,6 +129,8 @@ def sort_words(sen):
     Returns a list containing all the words in sen but
     sorted in alphabetical order. """
     # your code here
+    s1 = sen.split(" ")
+    return sorted(s1)
 
 
 # s = "look at this photograph"
@@ -146,7 +159,7 @@ def square_list(L):
 
 
 ##############
-## TRICKY EXAMPLE 1: append to L white iterating over range(L)
+## TRICKY EXAMPLE 1: append to L while iterating over range(L)
 ##############
 # L = [1,2,3,4]
 # for i in range(len(L)):
@@ -294,14 +307,18 @@ def apply_to_each(L, f):
         f is a list that takes in a number and returns a number
     Mutate L such that you apply function f to every element in L """
     # your code here
+    for i in range(len(L)):
+        # i iterate over 0,1,2,3...
+         L[i] = f(L[i])
+    return L
 
-# test = [1,-2,3]
-# apply_to_each(test, lambda x: x**2)
-# print(test)   # prints [1,4,9]
+test = [1,-2,3]
+apply_to_each(test, lambda x: x**2)
+print(test)   # prints [1,4,9]
 
-# test = [-7, 8, 5, -8, -3]
-# apply_to_each(test, abs)
-# print(test)   # prints [7, 8, 5, 8, 3]
+#test = [-7, 8, 5, -8, -3]
+#apply_to_each(test, abs)
+#print(test)   # prints [7, 8, 5, 8, 3]
 
 
 

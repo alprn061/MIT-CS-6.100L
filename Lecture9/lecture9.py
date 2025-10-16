@@ -33,6 +33,7 @@ def is_5(x):
 #    whether the parameter is a multiple of 10
 #    What does it print?
 # your code here
+# print(apply(lambda x: x%10 == 0, 100))
 
 
 def do_twice(n, fn):
@@ -66,7 +67,13 @@ def char_counts(s):
     number of vowels in s and the second value 
     is the number of consonants in s 
     """
-    # your code here
+    # define vowels
+    vowels = ["a","e","i","u","o"]
+    num_vowels = 0
+    for i in s:
+        if i in vowels:
+            num_vowels += 1
+    return (num_vowels, len(s)- num_vowels)
 
 
 # print(char_counts("abcd"))  # prints (1,3)
@@ -88,8 +95,9 @@ def mean(*args):
         tot += a
     return tot/len(args)
 
-# print(mean(1,2,3,4,5,6))
-# print(mean(6,0,9))
+#print(mean(1,2,3,4,5,6))
+#print(mean(6,0,9))
+#print(mean(6))
 
 ## Compare above code with this one:
 # Note args vs *args and mean((6,0,9)) vs mean(6,0,9)
@@ -99,8 +107,10 @@ def mean(args):
         tot += a
     return tot/len(args)
 
-# print(mean((1,2,3,4,5,6)))
-# print(mean((6,0,9)))
+#print(mean((1,2,3,4,5,6)))
+#print(mean((6,0,9)))
+#print(mean((6,)))
+
 
 ##################
 ## EXAMPLE: sum element values in a list 
@@ -137,11 +147,16 @@ def sum_and_prod(L):
     sum of all elements in L and the second value 
     is the product of all elements in L 
     """
-    # your code here
+    sum = 0
+    product = 1
+    for i in L:
+        sum += i
+        product *= i
+    return (sum, product)
 
  
 
-# print(sum_and_prod([4,6,2,5]))   # prints (17, 240)
+#print(sum_and_prod([4,6,2,5]))   # prints (17, 240)
 
 
 
@@ -197,7 +212,7 @@ def always_sunny(t1, t2):
     first = t1[0] + t2[0]
     return (sun[0], first)
 
-# always_sunny(('cloudy' ), ('cold',))  # returns what?
+#print(always_sunny(('cloudy' ), ('cold',)))  # returns what?
 
 
 
@@ -208,16 +223,24 @@ def max_of_both(n, f1, f2):
     Returns the maximum value of all these results.
     """
     # your code here
+    big = 0
+    for i in range(1,n+1):
+        if max(f1(i),f2(i)) > big:
+            big = max(f1(i),f2(i))
+    return big
 
-# print(max_of_both(2, lambda x:x-1, lambda x:x+1))  # prints 3
-# print(max_of_both(10, lambda x:x*2, lambda x:x/2))  # prints 20
+#print(max_of_both(2, lambda x:x-1, lambda x:x+1))  # prints 3
+#print(max_of_both(10, lambda x:x*2, lambda x:x/2))  # prints 20
 
 
 def sublist_sum(L):
     """ L is a list whose elements are lists with int elements
     Returns the sum of all int elements. """
     # your code here
-
+    total = 0
+    for i in L:
+        total += sum(i)
+    return total
 # print(sublist_sum([[1,2], [4,5,6]])) # prints 18
 
 
