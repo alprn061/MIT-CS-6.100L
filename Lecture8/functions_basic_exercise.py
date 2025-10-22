@@ -92,7 +92,24 @@ Output: false
 Constraints:
 1 <= n <= 231 - 1
 '''
+def isHappy(n, seen = None):  
 
+    if seen is None:
+        seen = []
+    if n in seen:
+        return False
+    seen.append(n)
+    sum = 0
+    for i in str(n):
+        sum += int(i)**2
+    if sum == 1:
+        return True
+    else:
+        return isHappy(sum, seen)    
+        
+#print(isHappy(19))
+#print(isHappy(2))
+# runtime: 7ms, memory: 12.5 mb 
 
 
 
@@ -121,6 +138,4 @@ Constraints:
 '''
 
 def generate(numRows: int) -> list[list[int]]:
-    tot = [[1],[1,1]]
-    for i in range(numRows+1):
-        tot[i]
+    return
