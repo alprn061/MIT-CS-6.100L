@@ -138,4 +138,17 @@ Constraints:
 '''
 
 def generate(numRows: int) -> list[list[int]]:
-    return
+    one = [[1]]
+    two = [[1],[1,1]]
+    three = []
+    if numRows == 1:
+        return one
+    elif numRows == 2:
+        return two
+    else:
+        for i in range(len(two[-1])):
+            if i ==0:
+                three.append(two[-1][i])
+            else:
+                three += [two[-1][i]+two[-1][i-1]]
+        three.append(1)
