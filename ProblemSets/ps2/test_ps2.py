@@ -455,14 +455,14 @@ class Results_600(unittest.TextTestResult):
         return self.points
 
 if __name__ == '__main__':
-    exec("import hangman as student")
+    exec("import ps2_hangman as student")
     # os.remove("run_game_test_results.txt")
 
     sys.stdout = store
     print("Running unit tests")
     sys.stdout = MyStream(sys.stdout)
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestPS2))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestPS2))
     result = unittest.TextTestRunner(verbosity=2, resultclass=Results_600).run(suite)
 
     output = result.getOutput()
@@ -474,4 +474,3 @@ if __name__ == '__main__':
     print("\n\nProblem Set 2 Unit Test Results:")
     print(output)
     print("Points for these tests: %s/5\n (Please note that this is not your final pset score, additional test cases will be run on submissions)" % points)
-
