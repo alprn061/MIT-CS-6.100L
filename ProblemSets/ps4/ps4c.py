@@ -41,7 +41,7 @@ def is_word(word_list, word):
     >>> is_word(word_list, 'asdf') returns
     False
     '''
-    word = word.strip(" !@#$%^&*()-_+={}[]|\:;'<>?,./\"").lower()
+    word = word.strip(r" !@#$%^&*()-_+={}[]|\\:;'<>?,./\"").lower()
     return word in word_list
 
 
@@ -49,20 +49,20 @@ def get_story_string():
     """
     Returns: a story in encrypted text.
     """
-    f = open("story.txt", "r")
+    f = open("ProblemSets/ps4/story.txt", "r")
     story = str(f.read())
     f.close()
     return story[:-1]
 
 
 def get_story_pads():
-    with open('pads.txt') as json_file:
+    with open('ProblemSets/ps4/pads.txt') as json_file:
         return json.load(json_file)
 
 
-WORDLIST_FILENAME = 'words.txt'
+WORDLIST_FILENAME = 'ProblemSets/ps4/words.txt'
 ### END HELPER CODE ###
-
+words = load_words(WORDLIST_FILENAME)
 
 def decrypt_message_try_pads(ciphertext, pads):
     '''
@@ -80,7 +80,14 @@ def decrypt_message_try_pads(ciphertext, pads):
 
     Returns: (PlaintextMessage) A message with the decrypted ciphertext and the best pad
     '''
-    raise NotImplementedError  # delete this line and replace with your code here
+    best_pad = []
+    decrypted = ""
+    for pad in pads:
+        result = ps4b.EncryptedMessage.decrypt_message(ciphertext, pad)
+        if is_word(words, result):
+            decrypted += result 
+            best_pad += pad
+    return decrypted, best_pad
 
 
 def decode_story():
@@ -89,9 +96,8 @@ def decode_story():
     Hint: use the helper functions get_story_string and get_story_pads and your EncryptedMessage class.
 
     Returns: (string) the decoded story
-
     '''
-    raise NotImplementedError  # delete this line and replace with your code here
+    pass
 
 
 
@@ -99,4 +105,4 @@ if __name__ == '__main__':
     # # Uncomment these lines to try running decode_story()
     # story = decode_story()
     # print("Decoded story: ", story)
-    pass
+    print(get_story_string())

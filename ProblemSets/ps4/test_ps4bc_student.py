@@ -249,9 +249,12 @@ class Results_600(unittest.TextTestResult):
 if __name__ == '__main__':
 
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestPS4BC))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestPS4BC))
+
     result = unittest.TextTestRunner(
-        verbosity=2, resultclass=Results_600).run(suite)
+        verbosity=2, resultclass=Results_600
+    ).run(suite)
+
 
     output = result.getOutput()
     points = result.getPoints()
@@ -262,3 +265,4 @@ if __name__ == '__main__':
     print("\nProblem Set 4B Unit Test Results:")
     print(output)
     print("Points: %s/3.5\n" % points)
+
