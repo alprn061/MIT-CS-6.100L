@@ -80,14 +80,26 @@ def decrypt_message_try_pads(ciphertext, pads):
 
     Returns: (PlaintextMessage) A message with the decrypted ciphertext and the best pad
     '''
-    best_pad = []
-    decrypted = ""
+    # initialize best score
+    best_score = 0
+    #initialize best pad
+    best_pad = None
+    # initialize best decryption
+    best_decryption = ""
     for pad in pads:
-        result = ps4b.EncryptedMessage.decrypt_message(ciphertext, pad)
-        if is_word(words, result):
-            decrypted += result 
-            best_pad += pad
-    return decrypted, best_pad
+        # pad = [1,2,3,6,8], [3,3,2,5,6], ...
+        # decrypt the message with looping pad
+        result = ciphertext.decrypt_message(pad).get_text()
+        # split the result into words 
+        words_in_result = result.split()
+        # calculalte how many valid word is generated
+        valid_count = sum(is_word(words, w) for w in words_in_result)
+
+        if valid_count >= best_score:   # choose most valid word generated
+            best_score = valid_count
+            best_decryption = result 
+            best_pad = pad
+    return ps4b.PlaintextMessage(best_decryption, best_pad)
 
 
 def decode_story():
@@ -97,12 +109,37 @@ def decode_story():
 
     Returns: (string) the decoded story
     '''
-    pass
+    # initialize best score
+    best_score = 0
+    #initialize best pad
+    best_pad = None
+    # best story
+    best_story = None
+
+    for pad in get_story_pads():
+        # pad = [1,2,3,6,8], [3,3,2,5,6], ...
+        # initialize encyrepted story
+        encrypted_story = ps4b.EncryptedMessage(get_story_string())
+        # decrypt the story with looping pad
+        result = encrypted_story.decrypt_message(pad).get_text()
+        # split the story into words
+        words_result = result.split()
+        # calculalte how many valid word is generated
+        valid_count = sum(is_word(words, w) for w in words_result)
+
+
+        # check if valid_count greater than best_score
+        if valid_count >= best_score:
+            best_score = valid_count
+            best_pad = pad
+            best_story = result
+    return best_story
+
 
 
 
 if __name__ == '__main__':
     # # Uncomment these lines to try running decode_story()
-    # story = decode_story()
-    # print("Decoded story: ", story)
-    print(get_story_string())
+    story = decode_story()
+    print("Decoded story: ", story)
+    # print(len(get_story_string()), [len(i) for i in get_story_pads()])
